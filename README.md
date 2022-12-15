@@ -1,3 +1,3 @@
 # tts_silero
 
-It is my exersice with Silero Speech in python.
+It is my exersices with Silero Speech in python.

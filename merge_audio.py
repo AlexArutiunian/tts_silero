@@ -1,7 +1,5 @@
 from pydub import AudioSegment
 
-
-
 lst = ["sounds/par6/1_2.wav", "sounds/par6/1_3.wav"]
 
 i = 2

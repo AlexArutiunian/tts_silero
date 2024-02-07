@@ -1,11 +1,7 @@
 import re
-import codecs
-import itertools
 import os
 import shutil
 import torch
-import pathlib
-from tqdm import tqdm
 from pydub import AudioSegment
 
 
@@ -19,7 +15,7 @@ def delete_bad_sym(fname):
 
 def lower_sym(fname):
     lst_big_alp = dump_strfile_in_lst('storage/helpers/alpA.txt', [])
-    lst_lower_alp = dump_strfile_in_lst('storage/helpers/alp.txt', [])         
+    lst_low_alp = dump_strfile_in_lst('storage/helpers/alp.txt', [])         
     for elem1, elem2 in zip(lst_big_alp, lst_low_alp):        
         replace_word(fname, elem1, elem2)                
 
@@ -114,7 +110,18 @@ def count_chars(out_text):
             if not c:
                 break
     return n    
-        
+
+# function delete_files_except_extension
+# is needed to delete temporary wav and txt files (in dir storage)
+
+def delete_files_except_extension(extension, directory):
+    for filename in os.listdir(directory):
+        if filename.endswith(extension):
+            continue
+        filepath = os.path.join(directory, filename)
+        if os.path.isfile(filepath):
+            os.remove(filepath)
+
 
 def main(text_for_tts, name_audio_out):
 
@@ -186,6 +193,10 @@ def main(text_for_tts, name_audio_out):
     out_audio = os.path.abspath(out_audio)
     merge_.export(f"{out_audio}/{name_audio_out}.mp3", format="mp3")
 
+    # delete temporary wav and txt of chuncks
+
+    delete_files_except_extension(".md", "storage/gen_audio/sounds")
+    delete_files_except_extension(".md", "storage/gen_audio/text")
 
 if __name__ == "__main__":
 

@@ -1,0 +1,6 @@
+silero
+torch
+torchaudio
+tqdm
+sounddevice
+pydub

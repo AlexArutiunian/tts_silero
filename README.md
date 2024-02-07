@@ -9,8 +9,10 @@ In this repository is program 'book_reader.py' - it is text to speech in russian
 In my opinion the best voice in russian is 'xenia'. So in my project I use it. 
 
 ## Necessary libraryes
+```
+pip install -r requirements.txt
+```
 
-requirements.txt
 
 ```bash
 pip3 install silero
